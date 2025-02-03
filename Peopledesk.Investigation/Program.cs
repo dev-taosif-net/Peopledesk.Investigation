@@ -1,19 +1,13 @@
 ﻿namespace Peopledesk.Investigation;
 
-public class Solution
-{
-    public int SpecialArray(int[] nums)
+public class Solution {
+    public int TimeRequiredToBuy(int[] tickets, int k)
     {
-        var count = nums.Length;
-        for (var i = 0; i <= count; i++)
-        {
-            if (nums.Count(x => x >= i) == i )
-            {
-                return i;
-            }
-            
-        }
-        return -1;
+        var totalTakenTime = 0;
+        totalTakenTime = tickets.Sum(x=> x > tickets[k]-1  ? tickets[k]-1 : x);
+        totalTakenTime = totalTakenTime + (tickets.Take(k+1).Sum(x => x >= tickets[k]  ? 1 : 0));
+
+        return totalTakenTime;
     }
 }
 
@@ -23,8 +17,8 @@ internal static class Program
     {
         Solution s = new();
 
-        int[] nums = [0,4,3,0,4]; 
+        int[] nums = [5,1,1,1]; 
 
-        Console.WriteLine(s.SpecialArray(nums));
+        Console.WriteLine(s.TimeRequiredToBuy(nums, 0));
     }
 }
