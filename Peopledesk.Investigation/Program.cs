@@ -1,13 +1,9 @@
 ﻿namespace Peopledesk.Investigation;
 
 public class Solution {
-    public int TimeRequiredToBuy(int[] tickets, int k)
+    public int[] Intersection(int[] nums1, int[] nums2)
     {
-        var totalTakenTime = 0;
-        totalTakenTime = tickets.Sum(x=> x > tickets[k]-1  ? tickets[k]-1 : x);
-        totalTakenTime = totalTakenTime + (tickets.Take(k+1).Sum(x => x >= tickets[k]  ? 1 : 0));
-
-        return totalTakenTime;
+        return nums1.Intersect(nums2).ToArray();
     }
 }
 
@@ -17,8 +13,10 @@ internal static class Program
     {
         Solution s = new();
 
-        int[] nums = [5,1,1,1]; 
+        int[] student = [1,2,2,1]; 
+        int[] sandwitch = [2,2]; 
+        var x = s.Intersection(student, sandwitch);
 
-        Console.WriteLine(s.TimeRequiredToBuy(nums, 0));
+        Console.WriteLine(s.Intersection(student, sandwitch));
     }
 }
