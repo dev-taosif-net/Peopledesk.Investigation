@@ -16,7 +16,6 @@ internal static class Program
         int[] student = [1,2,2,1]; 
         int[] sandwitch = [2,2]; 
         var x = s.Intersection(student, sandwitch);
-
         Console.WriteLine(s.Intersection(student, sandwitch));
     }
 }
