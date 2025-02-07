@@ -1,19 +1,17 @@
 ﻿namespace Peopledesk.Investigation;
 
-public class Solution
-{
-    public int SpecialArray(int[] nums)
+public class Solution {
+    public int FirstUniqChar(string s)
     {
-        var count = nums.Length;
-        for (var i = 0; i <= count; i++)
-        {
-            if (nums.Count(x => x >= i) == i )
-            {
-                return i;
-            }
-            
-        }
-        return -1;
+        var d = s
+            .GroupBy(x=>x)
+            .Where(x=>x.Count() == 1)
+            .ToDictionary(x => x.Key , x=>x.Count());
+
+        if (!d.Any()) return -1;
+        var firstUniqueChar = d.First().Key;
+        return s.IndexOf(firstUniqueChar);
+        
     }
 }
 
@@ -23,8 +21,8 @@ internal static class Program
     {
         Solution s = new();
 
-        int[] nums = [0,4,3,0,4]; 
+        var str = "leetcode" ; 
 
-        Console.WriteLine(s.SpecialArray(nums));
+        Console.WriteLine(s.FirstUniqChar(str));
     }
 }
