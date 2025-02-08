@@ -1,28 +1,22 @@
 ﻿namespace Peopledesk.Investigation;
 
 public class Solution {
-    public int FirstUniqChar(string s)
-    {
-        var d = s
-            .GroupBy(x=>x)
-            .Where(x=>x.Count() == 1)
-            .ToDictionary(x => x.Key , x=>x.Count());
-
-        if (!d.Any()) return -1;
-        var firstUniqueChar = d.First().Key;
-        return s.IndexOf(firstUniqueChar);
+    public int[] FindErrorNums(int[] nums) {
         
+        int first = nums.GroupBy(x => x).Where(g => g.Count() == 2).Select(x => x.Key).First();
+        int second = Enumerable.Range(1, nums.Length).Except(nums).First();
+
+        return new int[] { first, second }; 
     }
 }
-
 internal static class Program
 {
     private static void Main()
     {
         Solution s = new();
 
-        var str = "leetcode" ; 
+        //var str = "leetcode" ; 
 
-        Console.WriteLine(s.FirstUniqChar(str));
+        //Console.WriteLine(s.FirstUniqChar(str));
     }
 }
